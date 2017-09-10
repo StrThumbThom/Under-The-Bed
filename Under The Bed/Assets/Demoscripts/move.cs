@@ -32,11 +32,11 @@ public class move : MonoBehaviour {
         toward = toward.normalized;
         orth = Vector3.Cross(toward, Vector3.up).normalized;
 
-        horz = -orth * (Input.GetAxis("Horizontal"));
-        vert = toward * (Input.GetAxis("Vertical"));
+        horz = -orth * (Input.GetAxisRaw("Horizontal"));
+        vert = toward * (Input.GetAxisRaw("Vertical"));
         temp = horz + vert;
         temp = temp.normalized * speed;
-        temp.y = 0;
+        temp.y = -1f;
         test.Move(temp);
     
 	}
