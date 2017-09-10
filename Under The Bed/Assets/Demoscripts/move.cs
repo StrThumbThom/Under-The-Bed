@@ -36,7 +36,7 @@ public class move : MonoBehaviour {
         vert = toward * (Input.GetAxisRaw("Vertical"));
         temp = horz + vert;
         temp = temp.normalized * speed;
-        temp.y = -1f;
+        temp.y = 0;
         test.Move(temp);
     
 	}
