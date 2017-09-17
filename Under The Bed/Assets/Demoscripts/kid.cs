@@ -18,8 +18,9 @@ public class kid : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isAwake == true && isGoingBack == false) {
-			t += Time.deltaTime / 5;
+			t += Time.deltaTime;
 			transform.position = Vector3.Lerp (start.position, end.position, t);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
 		}
 		if (transform.position == end.position) {
 			isGoingBack = true;
@@ -29,15 +30,14 @@ public class kid : MonoBehaviour {
 			//transform.position = Vector3.Lerp (end.position, start.position, t);
 		}
 		if (isAwake == true && isGoingBack == true) {
-			t += Time.deltaTime / 8;
+			t += Time.deltaTime / 4;
 			transform.position = Vector3.Lerp (end.position, start.position, t);
 		}
 		if (transform.position == start.position) {
 			isAwake = false;
 			t = 0;
 			isGoingBack = false;
-			Vector3 temp = transform.rotation.eulerAngles;
-			temp.z = -90.0f;
+            transform.rotation = Quaternion.Euler(0, 0, -90f);
 		}
 
 	}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hide : MonoBehaviour
 {
 
-    public Transform spot;
+    public GameObject spot;
     public GameObject a;
     bool hidden = false;
 
@@ -19,23 +19,51 @@ public class Hide : MonoBehaviour
     void Update()
     {
 
-        if ((Input.GetButtonUp("Fire1")) && (Vector3.Distance(transform.position, spot.position) < 5.0))
+        if ((Input.GetButtonUp("Fire1")))
         {
-            if(GetComponent<Hide>().hidden == false)
-            {
-                GetComponent<Renderer>().enabled = false;
-                GetComponent<move>().enabled = false;
-                hidden = true;
+            spot = GetHidingSpot();
+            if (Vector3.Distance(transform.position, spot.transform.position) < 5.0)
 
-            }
-
-            else
             {
-                GetComponent<Renderer>().enabled = true;
-                GetComponent<move>().enabled = true;
-                hidden = false;
+                if (GetComponent<Hide>().hidden == false)
+                {
+                    GetComponent<Renderer>().enabled = false;
+                    GetComponent<move>().enabled = false;
+                    hidden = true;
+                    spot.GetComponent<Renderer>().material.color = Color.black;
+
+
+                }
+
+                else
+                {
+                    GetComponent<Renderer>().enabled = true;
+                    GetComponent<move>().enabled = true;
+                    hidden = false;
+                    spot.GetComponent<Renderer>().material.color = Color.white;
+
+                }
             }
         }
+    }
 
+    public GameObject GetHidingSpot()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("HidingSpot");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
 }
