@@ -7,6 +7,7 @@ public class Hide : MonoBehaviour
 
     public GameObject spot;
     public GameObject a;
+    public GameObject light;
     bool hidden = false;
 
     // Use this for initialization
@@ -44,6 +45,11 @@ public class Hide : MonoBehaviour
 
                 }
             }
+        }
+
+        if(hidden == false && light.active)
+        {
+            this.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 
