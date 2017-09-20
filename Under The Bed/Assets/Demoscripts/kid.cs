@@ -40,7 +40,7 @@ public class kid : MonoBehaviour {
                 wait = false;
                 isGoingBack = true;
                 t = 0;
-                countdown.text = "";
+                countdown.enabled = false;
             }
         }
 
@@ -56,6 +56,7 @@ public class kid : MonoBehaviour {
             {
                 t = 0;
                 arrived = true;
+                countdown.enabled = true;
             }
 		}
 		if (isAwake == true && isGoingBack == true) {
@@ -69,8 +70,6 @@ public class kid : MonoBehaviour {
 			isAwake = false;
             arrived = false;
 			t = 0;
-            countdown.text = "";
-
             isGoingBack = false;
             light.SetActive(false);
             transform.rotation = Quaternion.Euler(0, 0, -90f);
