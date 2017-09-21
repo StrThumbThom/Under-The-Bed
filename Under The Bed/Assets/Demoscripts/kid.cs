@@ -71,6 +71,7 @@ public class kid : MonoBehaviour {
             arrived = false;
 			t = 0;
             isGoingBack = false;
+            wait = false;
             light.SetActive(false);
             transform.rotation = Quaternion.Euler(0, 0, -90f);
 		}

@@ -10,11 +10,12 @@ public class Hide : MonoBehaviour
     public GameObject light;
     public Text text;
     bool hidden = false;
+    bool alive = true;
 
     // Use this for initialization
     void Start()
     {
-
+        text.enabled = false;
     }
 
     // Update is called once per frame
@@ -51,7 +52,10 @@ public class Hide : MonoBehaviour
         if(hidden == false && light.active)
         {
             GetComponent<Renderer>().material.color = Color.red;
-            text.text = "GAME OVER";
+            text.enabled = true;
+            alive = false;
+            GetComponent<move>().enabled = false;
+
         }
     }
 
@@ -73,5 +77,10 @@ public class Hide : MonoBehaviour
             }
         }
         return closest;
+    }
+
+    public bool IsAlive()
+    {
+        return alive;
     }
 }

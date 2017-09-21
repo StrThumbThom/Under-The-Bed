@@ -10,7 +10,7 @@ public class paper : MonoBehaviour {
     public Scare mon;
     public Image banan;
     public GameObject prefab;
-
+    bool used = false;
 
     // Use this for initialization
     void Start () {
@@ -28,17 +28,24 @@ public class paper : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        banan.enabled = true;
-        text.enabled = true;
-        text2.enabled = true;
-        mon.SetScare(true);
+        if (!mon.GetScare())
+        {
+            banan.enabled = true;
+            text.enabled = true;
+            text2.enabled = true;
+            mon.SetScare(true);
+            used = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        banan.enabled = false;
-        text.enabled = false;
-        text2.enabled = false;
-        prefab.SetActive(false);
+        if (used)
+        {
+            banan.enabled = false;
+            text.enabled = false;
+            text2.enabled = false;
+            prefab.SetActive(false);
+        }
     }
 }
