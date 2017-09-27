@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Scare : MonoBehaviour {
@@ -31,6 +32,11 @@ public class Scare : MonoBehaviour {
         if(slide.value == 2 && hide.IsAlive() && c.getAwake() == false)
         {
             win.enabled = true;
+        }
+
+        if (Input.GetKeyUp("r"))
+        {
+            SceneManager.LoadScene(0);
         }
 	}
 
